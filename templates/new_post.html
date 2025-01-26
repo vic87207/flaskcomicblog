@@ -1,0 +1,22 @@
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.title.label }}
+        {{ form.title(class="form-control") }}
+    </div>
+    <div>
+        {{ form.description.label }}
+        {{ form.description(class="form-control") }}
+    </div>
+    <div>
+        {{ form.image.label }}
+        {{ form.image(class="form-control") }}
+    </div>
+    <div>
+        {{ form.date_published.label }}
+        {{ form.date_published(class="form-control") }}
+    </div>
+    <div>
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>

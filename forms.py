@@ -1,26 +1,21 @@
-"""
-This module contains forms for the blogging app.
-
-The primary focus is on posting comic strips, so the forms handle image files
-and related metadata like title, description, and publication date.
-"""
-
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileAllowed
-from wtforms import DateField, StringField, TextAreaField, FileField, SubmitField
+from wtforms import StringField, TextAreaField, FileField, SubmitField, DateField
 from wtforms.validators import DataRequired
+from flask_wtf.file import FileAllowed
 
 
 class ComicForm(FlaskForm):
-    """
-    The form will include title, description, image, date published, and submit
-
-    """
-
     title = StringField("Title", validators=[DataRequired()])
-    description = TextAreaField("Description")
+    description = TextAreaField("Description", validators=[DataRequired()])
     image = FileField(
-        "Upload Comic", validators=[FileAllowed(["jpg", "jpeg", "png"], "Image Only!!")]
+        "Upload Comic",
+        validators=[
+            FileAllowed(
+                ["jpg", "jpeg", "png"], "Only JPG, JPEG, or PNG files are allowed!"
+            )
+        ],
     )
-    date_published = DateField("Date Published", format="%m-%d-%Y")
+    date_published = DateField(
+        "Date Published", format="%Y-%m-%d", validators=[DataRequired()]
+    )
     submit = SubmitField("Post Comic")
