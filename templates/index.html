@@ -1,9 +1,17 @@
-{% for comic in comics %}
-    <div>
-        <a href="{{ url_for('post', comic_id=comic.id) }}">
-            <img src="{{ url_for('static', filename='images/' ~ comic.image_file) }}" alt="{{ comic.title }}" width="200">
-        </a>
-        <h3>{{ comic.title }}</h3>
+{% extends "base.html" %}
+
+{% block title %}Comic Index{% endblock %}
+
+{% block content %}
+<h1>Comic Posts</h1>
+<div class="comic-container">
+    {% for comic in comics %}
+    <div class="comic">
+        <h2>{{ comic.title }}</h2>
+        <img src="{{ url_for('static', filename='images/' ~ comic.image_file) }}" alt="{{ comic.title }}">
+        <p>{{ comic.description }}</p>
         <p>Published on: {{ comic.date_posted.strftime('%Y-%m-%d') }}</p>
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}

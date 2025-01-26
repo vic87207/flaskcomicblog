@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+
 <img src="{{ url_for('static', filename='images/' ~ comic.image_file) }}" alt="{{ comic.title }}">
 <h1>{{ comic.title }}</h1>
 <p>{{ comic.description }}</p>
